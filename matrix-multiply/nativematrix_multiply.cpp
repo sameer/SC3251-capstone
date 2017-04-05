@@ -29,6 +29,7 @@ JNIEXPORT void JNICALL Java_nativematrix_1multiply_matrixMultiply
 	jint *matrix_B  = (jint*) env->GetPrimitiveArrayCritical(jMatrix_B, 0);
 	for (jint i = 0; i < m1; ++i) {
             for (jint j = 0; j < n2; ++j) {
+		#pragma ivdep
                 for (jint k = 0; k < m2; ++k) {
                     matrix_B[i * m1 + j] += (matrix_A1[i * n1 + k]) * ((matrix_A2[k * m2 + j]));
                 }

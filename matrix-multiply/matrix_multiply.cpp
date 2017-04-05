@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-static inline void generateArray(int* matrix, int m, int n)
+static void generateArray(int* matrix, int m, int n)
 {
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -64,7 +64,7 @@ static inline void generateArray(int* matrix, int m, int n)
     }
 }
 
-static inline void matrixMultiply(int* matrix_A1, int m1, int n1, int* matrix_A2, int m2, int n2, int* matrix_B)
+static void matrixMultiply(int* matrix_A1, int m1, int n1, int* matrix_A2, int m2, int n2, int* matrix_B)
 {
     int i = 0, j = 0, k = 0;
     for (i = 0; i < m1; ++i) {
@@ -76,7 +76,7 @@ static inline void matrixMultiply(int* matrix_A1, int m1, int n1, int* matrix_A2
     }
 }
 
-static inline void printReduce(int* matrix, int m, int n)
+static void printReduce(int* matrix, int m, int n)
 {
     double d = 0;
 	for (int i = 0; i < m * n; ++i) { 

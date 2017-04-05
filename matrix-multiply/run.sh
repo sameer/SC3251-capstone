@@ -1,8 +1,16 @@
 #/bin/bash
 name="matrix_multiply"
 
+echo "JNI OpenMP Time"
+time java -Xms4G -Xmx4G -Djava.library.path=. "openmpnative$name" $@
+echo ""
+
+echo "C++ OpenMP Time"
+time "./openmp$name" $@
+echo ""
+
 echo "JNI Time"
-time java -Xms512M -Xmx512M -Djava.library.path=. "native$name" $@
+time java -Xms4G -Xmx4G -Djava.library.path=. "native$name" $@
 echo ""
 
 echo "C++ time"

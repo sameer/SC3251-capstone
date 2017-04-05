@@ -66,10 +66,9 @@ static void generateArray(int* matrix, int m, int n)
 
 static void matrixMultiply(int* matrix_A1, int m1, int n1, int* matrix_A2, int m2, int n2, int* matrix_B)
 {
-    int i = 0, j = 0, k = 0;
-    for (i = 0; i < m1; ++i) {
-        for (j = 0; j < n2; ++j) {
-            for (k = 0; k < m2; ++k) {
+    for (int i = 0; i < m1; ++i) {
+        for (int j = 0; j < n2; ++j) {
+            for (int k = 0; k < m2; ++k) {
                 matrix_B[i * m1 + j] += (matrix_A1[i * n1 + k]) * ((matrix_A2[k * m2 + j]));
             }
         }

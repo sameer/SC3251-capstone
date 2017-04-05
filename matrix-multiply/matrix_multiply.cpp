@@ -12,9 +12,10 @@
 #include <iostream>
 #include <stdio.h>
 
-static inline void generateArray(int* matrix, int m, int n);
-static inline void matrixMultiply(int* matrix_A1, int n1, int m1, int* matrix_A2, int n2, int m2, int* matrix_B);
-static inline void printReduce(int* matrix, int m, int n);
+static void generateArray(int* matrix, int m, int n);
+static void matrixMultiply(const int* matrix_A1, int n1, int m1, const int* matrix_A2, int n2, int m2, int* matrix_B);
+static void printReduce(const int* matrix, int m, int n);
+static int* matrixTranspose(const int* matrix, int m, int n);
 
 int main(int argc, char** argv)
 {
@@ -64,22 +65,37 @@ static void generateArray(int* matrix, int m, int n)
     }
 }
 
-static void matrixMultiply(int* matrix_A1, int m1, int n1, int* matrix_A2, int m2, int n2, int* matrix_B)
+static void matrixMultiply(const int* matrix_A1, int m1, int n1, const int* matrix_A2, int m2, int n2, int* matrix_B)
 {
+    matrix_A2 = matrixTranspose(matrix_A2, m2, n2);
     for (int i = 0; i < m1; ++i) {
         for (int j = 0; j < n2; ++j) {
             for (int k = 0; k < m2; ++k) {
-                matrix_B[i * m1 + j] += (matrix_A1[i * n1 + k]) * ((matrix_A2[k * m2 + j]));
+                matrix_B[i * m1 + j] += (matrix_A1[i * n1 + k]) * ((matrix_A2[j * n2 + k]));
             }
         }
     }
+    delete[] matrix_A2;
 }
 
-static void printReduce(int* matrix, int m, int n)
+static void printReduce(const int* matrix, int m, int n)
 {
     double d = 0;
 	for (int i = 0; i < m * n; ++i) { 
 		d += matrix[i];
 	}
     std::cout << d << std::endl;
+}
+
+static int* matrixTranspose(const int* matrix, int m, int n)
+{
+    int* matrixT = new int[m*n];
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            matrixT[j * n + i] = matrix[i * m + j];
+        }
+    }
+    return matrixT;
 }

@@ -7,12 +7,12 @@ name="matrix_multiply"
 echo "Compiling JNI..."
 javac "native$name.java"
 javah "native$name"
-g++ -O3 -lc -msse -msse2 -funroll-loops -ftree-vectorizer-verbose=1 -fPIC -I"$JAVA_HOME/include/" -I"$JAVA_HOME/include/linux/" "native$name.cpp" -shared -o "lib$name.so"
+g++ -O3 -fPIC -I"$JAVA_HOME/include/" -I"$JAVA_HOME/include/linux/" "native$name.cpp" -shared -o "lib$name.so"
 echo ""
 
 
 echo "Compiling C++"
-g++ -O3 -msse -msse2 -funroll-loops -ftree-vectorizer-verbose=1 -fPIC "$name.cpp" -o "$name"
+g++ -O3 -fPIC "$name.cpp" -o "$name"
 echo ""
 
 echo "Compiling Java..."

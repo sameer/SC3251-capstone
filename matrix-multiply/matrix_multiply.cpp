@@ -12,10 +12,10 @@
 #include <iostream>
 #include <stdio.h>
 
-static void generateArray(int* matrix, int m, int n);
-static void matrixMultiply(const int* matrix_A1, int n1, int m1, const int* matrix_A2, int n2, int m2, int* matrix_B);
-static void printReduce(const int* matrix, int m, int n);
-static int* matrixTranspose(const int* matrix, int m, int n);
+static void generateArray(double* matrix, int m, int n);
+static void matrixMultiply(const double* matrix_A1, int n1, int m1, const double* matrix_A2, int n2, int m2, double* matrix_B);
+static void printReduce(const double* matrix, int m, int n);
+static double* matrixTranspose(const double* matrix, int m, int n);
 
 int main(int argc, char** argv)
 {
@@ -38,9 +38,9 @@ int main(int argc, char** argv)
     sscanf(argv[1], "%d", &n);
 
     // dynamically allocate space for matrix_A (input matrix) in 1d array
-    int *matrix_A = new int[n*n];
+    double *matrix_A = new double[n*n];
     // dynamically allocate space for matrix_B (output matrix) in 1d array
-    int *matrix_B = new int[n*n];
+    double *matrix_B = new double[n*n];
 
     // call function to read data from file and copy into matrix_A
     generateArray(matrix_A, n, n);
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-static void generateArray(int* matrix, int m, int n)
+static void generateArray(double* matrix, int m, int n)
 {
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -65,7 +65,7 @@ static void generateArray(int* matrix, int m, int n)
     }
 }
 
-static void matrixMultiply(const int* matrix_A1, int m1, int n1, const int* matrix_A2, int m2, int n2, int* matrix_B)
+static void matrixMultiply(const double* matrix_A1, int m1, int n1, const double* matrix_A2, int m2, int n2, double* matrix_B)
 {
     matrix_A2 = matrixTranspose(matrix_A2, m2, n2);
     for (int i = 0; i < m1; ++i) {
@@ -78,7 +78,7 @@ static void matrixMultiply(const int* matrix_A1, int m1, int n1, const int* matr
     delete[] matrix_A2;
 }
 
-static void printReduce(const int* matrix, int m, int n)
+static void printReduce(const double* matrix, int m, int n)
 {
     double d = 0;
 	for (int i = 0; i < m * n; ++i) { 
@@ -87,9 +87,9 @@ static void printReduce(const int* matrix, int m, int n)
     std::cout << d << std::endl;
 }
 
-static int* matrixTranspose(const int* matrix, int m, int n)
+static double* matrixTranspose(const double* matrix, int m, int n)
 {
-    int* matrixT = new int[m*n];
+    double* matrixT = new double[m*n];
     for (int i = 0; i < m; ++i)
     {
         for (int j = 0; j < n; ++j)
